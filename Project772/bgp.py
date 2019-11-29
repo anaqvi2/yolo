@@ -77,13 +77,10 @@ class NewTopo(Topo):
                 host = self.addNode(hostname)
                 hosts.append(host)
                 self.addLink(router, host)
-        self.addLink('R1', 'R2')        
-        self.addLink('R1', 'R3')        
-        self.addLink('R2', 'R3')        
-        self.addLink('R2', 'R4')        
-        self.addLink('R2', 'R5')
-        self.addLink('R3', 'R4')        
-        self.addLink('R3', 'R5')                
+        link_dict = {1:[2,3], 2:[3,4,5], 3:[4,5]}
+        for k1 in link_dict.keys():
+            for v1 in link_dict[k1]: 
+                self.addLink("R"+str(k1), "R"+str(v1))
         self.addLink('R4', 'R5')
 
         routers.append(self.addSwitch('R6'))
